@@ -28,7 +28,7 @@ const calculateRoundScore = ([opponentShape, myShape]) => {
   return myScore;
 }
 
-
+  
 const main = (inputFilePath) => {
   fs.readFile(inputFilePath, "utf-8", (err, guideData) => {
     const strategyGuide = generateStrategyGuide(guideData);
