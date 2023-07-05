@@ -8,14 +8,15 @@ const moveScore =
   Z: 3
 }
 
-const sumOf = numbers => numbers.reduce((a,b) => a+b);
+const sumOf = numbers => numbers.reduce((a, b) => a + b);
+
+const nextIndexOf = (index, arraySize) => (index + 1) % arraySize;
+const previousIndexOf = (index, arraySize) => (index - 1 + arraySize) % arraySize;
 
 const hasWon = (opponentScore, myScore) => opponentScore - myScore === -1 || opponentScore - myScore === 2;
 const isGameDrawn = (opponentScore, myScore) => opponentScore - myScore === 0;
 
-const generateStrategyGuide = (guideData) => {
-  return guideData.split("\n").map(roundData => roundData.split(" "));
-}
+const generateStrategyGuide = (guideData) => guideData.split("\n").map(roundData => roundData.split(" "));
 
 const calculateRoundScore = ([opponentMove, myMove]) => {
   const myScore = moveScore[myMove];
@@ -26,10 +27,33 @@ const calculateRoundScore = ([opponentMove, myMove]) => {
   return myScore;
 }
 
+const decrypt = ([opponentMove, myMove]) => {
+  const opponentShapes = ['A', 'B', 'C'];
+  const myShapes = ['X', 'Y', 'Z'];
+  const indexOfOpponentMove = opponentShapes.indexOf(opponentMove);
+  let legibleMyMove;
+  
+  switch(myMove) {
+    case 'X' : legibleMyMove = myShapes[previousIndexOf(indexOfOpponentMove, 3)];break;
+    case 'Y' : legibleMyMove = myShapes[indexOfOpponentMove]; break;
+    case 'Z' : legibleMyMove = myShapes[nextIndexOf(indexOfOpponentMove, 3)]; break;
+  }
+
+  return [opponentMove, legibleMyMove];
+}
+
 const calculateGameScore = (guideData) => {
   const strategyGuide = generateStrategyGuide(guideData);
   const totalScores = strategyGuide.map(calculateRoundScore);
   return sumOf(totalScores);
 }
 
-module.exports = {calculateGameScore, calculateRoundScore, generateStrategyGuide, sumOf, hasWon, isGameDrawn};
+const calculateGameScoreAfterDecryption = (guideData) => {
+  const strategyGuide = generateStrategyGuide(guideData);
+  const decryptedStrategyGuide = strategyGuide.map(decrypt);
+  const totalScores = decryptedStrategyGuide.map(calculateRoundScore);
+  return sumOf(totalScores);
+}
+
+module.exports = {calculateGameScoreAfterDecryption, calculateGameScore, calculateRoundScore, generateStrategyGuide, sumOf, hasWon, isGameDrawn, nextIndexOf, previousIndexOf, decrypt};
+
