@@ -1,24 +1,22 @@
 class Box {
-  #length;
-  #width;
-  #height;
+  #l;
+  #w;
+  #h;
 
-  constructor(length, width, height) {
-    this.#length = length;
-    this.#width = width;
-    this.#height = height;
+  constructor(length, width, heigth) {
+    this.#l = length;
+    this.#w = width;
+    this.#h = heigth;
   }
 
   calculateSurfaceArea() {
-    return (
-      2 * this.#length * this.#width +
-      2 * this.#width * this.#height +
-      2 * this.#length * this.#height
-    );
+    const [l, w, h] = [this.#l, this.#w, this.#h];
+    return 2 * l * w + 2 * w * h + 2 * l * h;
   }
 
   calculateSmallestArea() {
-    return 0;
+    const dimensions = [this.#l, this.#w, this.#h].sort((a, b) => a - b);
+    return dimensions[0] * dimensions[1];
   }
 }
 

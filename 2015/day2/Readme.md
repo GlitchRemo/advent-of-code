@@ -28,3 +28,9 @@ What are the question we can ask to a box?
 How can you get area of the smallest side?
 -> sort the sides
 -> return the multiplication of first two sides
+
+How to consume box class?
+-> const dimensions = "1x2x3";
+-> const [length, width, heigth] = dimensions.split("x");
+-> const box = new Box(length, width, heigth);
+-> box.calculateSurfaceArea + box.calculateSmallestArea
