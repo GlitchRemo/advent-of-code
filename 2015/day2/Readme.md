@@ -23,4 +23,8 @@ What are the attributes of a box?
 
 What are the question we can ask to a box?
 -> area of smallest side
--> surface area
+-> surface area // 2*l*w + 2*w*h + 2*h*l
+
+How can you get area of the smallest side?
+-> sort the sides
+-> return the multiplication of first two sides

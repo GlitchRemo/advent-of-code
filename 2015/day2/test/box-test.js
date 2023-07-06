@@ -12,4 +12,9 @@ describe("calculateSurfaceArea", () => {
     const box = new Box(1, 0, 0);
     assert.strictEqual(box.calculateSurfaceArea(), 0);
   });
+
+  it("should be sum of 6 unit areas for unit dimensions", () => {
+    const box = new Box(1, 1, 1);
+    assert.strictEqual(box.calculateSurfaceArea(), 6);
+  });
 });
