@@ -19,13 +19,19 @@ class MaterialCalculator {
   }
 
   calculateTotalWrapperArea() {
-    const wrapperAreas = this.#giftBoxes.map(this.#calculateWrapperArea);
-    return total(wrapperAreas);
+    return this.#giftBoxes.reduce(
+      (totalWrapperArea, giftBox) =>
+        totalWrapperArea + this.#calculateWrapperArea(giftBox),
+      0
+    );
   }
 
   calculateTotalRibbonLength() {
-    const ribbonLengths = this.#giftBoxes.map(this.#calculateRibbonLength);
-    return total(ribbonLengths);
+    return this.#giftBoxes.reduce(
+      (totalRibbonLength, giftBox) =>
+        totalRibbonLength + this.#calculateRibbonLength(giftBox),
+      0
+    );
   }
 }
 

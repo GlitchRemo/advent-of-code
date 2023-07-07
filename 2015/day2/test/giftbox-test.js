@@ -36,7 +36,7 @@ describe("GiftBox", () => {
   });
 
   describe("calculateSmallestSideArea", () => {
-    it("should give 0 square units if any two dimensions are 0", () => {
+    it("should give 0 if any two dimensions are 0", () => {
       const box1 = new GiftBox(1, 0, 0);
       const box2 = new GiftBox(0, 1, 0);
       const box3 = new GiftBox(0, 0, 1);
@@ -72,7 +72,7 @@ describe("GiftBox", () => {
   });
 
   describe("calculateSmallestSidePerimeter", () => {
-    it("should give 0 square units if any two dimensions are 0", () => {
+    it("should give 0 if any two dimensions are 0", () => {
       const box1 = new GiftBox(1, 0, 0);
       const box2 = new GiftBox(0, 1, 0);
       const box3 = new GiftBox(0, 0, 1);
