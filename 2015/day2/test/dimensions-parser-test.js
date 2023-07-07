@@ -3,7 +3,7 @@ const assert = require("assert");
 const { parseDimensions } = require("../src/dimensions-parser");
 
 describe("parseDimensions", () => {
-  it("should give nothing if we pass nothing", () => {
+  it("should give an empty list if we pass nothing", () => {
     assert.deepStrictEqual(parseDimensions(""), []);
   });
 

@@ -1,6 +1,5 @@
 const { GiftBox } = require("./giftbox");
 const total = (numbers) => numbers.reduce((a, b) => a + b, 0);
-const multiply = (a, b) => a * b;
 
 class MaterialCalculator {
   #giftBoxes;
@@ -11,33 +10,22 @@ class MaterialCalculator {
     );
   }
 
-  #calculateSlackArea(giftBox) {
-    return multiply(...giftBox.getTwoSmallestSides());
+  #calculateWrapperArea(giftBox) {
+    return giftBox.calculateSurfaceArea() + giftBox.calculateSmallestSideArea();
   }
 
-  #calculateWrappingRibbonLength(giftBox) {
-    return 2 * total(giftBox.getTwoSmallestSides());
-  }
-
-  #calculateBowLength(giftBox) {
-    return giftBox.calculateVolume();
+  #calculateRibbonLength(giftBox) {
+    return giftBox.calculateSmallestSidePerimeter() + giftBox.calculateVolume();
   }
 
   calculateTotalWrapperArea() {
-    const totalWrapperArea = this.#giftBoxes.map(
-      (giftBox) =>
-        giftBox.calculateSurfaceArea() + this.#calculateSlackArea(giftBox)
-    );
-    return total(totalWrapperArea);
+    const wrapperAreas = this.#giftBoxes.map(this.#calculateWrapperArea);
+    return total(wrapperAreas);
   }
 
   calculateTotalRibbonLength() {
-    const totalRibbonLength = this.#giftBoxes.map(
-      (giftBox) =>
-        this.#calculateWrappingRibbonLength(giftBox) +
-        this.#calculateBowLength(giftBox)
-    );
-    return total(totalRibbonLength);
+    const ribbonLengths = this.#giftBoxes.map(this.#calculateRibbonLength);
+    return total(ribbonLengths);
   }
 }
 

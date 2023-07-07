@@ -4,7 +4,7 @@ const assert = require("assert");
 
 describe("MaterialCalculator", () => {
   describe("calculateTotalWrapperArea", () => {
-    it("should be 0 for if no giftBox dimension is created", () => {
+    it("should give 0 for if no giftBox dimension is created", () => {
       const giftBoxDimensions = [];
       const materialCalculator = new MaterialCalculator();
 
@@ -15,7 +15,7 @@ describe("MaterialCalculator", () => {
       assert.strictEqual(actual, expected);
     });
 
-    it("should be the wrapper area of one giftBox if one giftBox is created", () => {
+    it("should give the wrapper area of one giftBox if one giftBox is created", () => {
       const giftBoxDimensions = [[1, 2, 3]];
       const materialCalculator = new MaterialCalculator();
 
@@ -26,7 +26,7 @@ describe("MaterialCalculator", () => {
       assert.strictEqual(actual, expected);
     });
 
-    it("should be the sum of wrapper areas of all giftBoxes if multiple giftboxes are created", () => {
+    it("should give the sum of wrapper areas of all giftBoxes if multiple giftboxes are created", () => {
       const giftBoxDimensions = [
         [1, 2, 3],
         [2, 3, 4],
@@ -42,7 +42,7 @@ describe("MaterialCalculator", () => {
   });
 
   describe("calculateTotalRibbonLength", () => {
-    it("should be 0 if no box is created", () => {
+    it("should give 0 if no box is created", () => {
       const giftBoxDimensions = [];
       const materialCalculator = new MaterialCalculator();
 
@@ -53,7 +53,7 @@ describe("MaterialCalculator", () => {
       assert.strictEqual(actual, expected);
     });
 
-    it("should be the length of ribbon needed to wrap one box if one box is created", () => {
+    it("should give the length of ribbon needed to wrap one box if one box is created", () => {
       const giftBoxDimensions = [[2, 3, 4]];
       const materialCalculator = new MaterialCalculator();
 
