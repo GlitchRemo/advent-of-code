@@ -27,11 +27,18 @@ const countHousesVisited = (directions) => {
   return recordHousesVisited(directions).size;
 };
 
+const partition = (directions) => {
+  if (directions.length === 0) return { even: "", odd: "" };
+  return { even: "", odd: directions };
+};
+
 const countHousesVisitedByTwoSantas = (directions) => {
-  const santaDirections = ">";
-  const roboSantaDirections = "";
+  const { even: santaDirections, odd: roboSantaDirections } =
+    partition(directions);
+
   const housesVisitedBySanta = recordHousesVisited(santaDirections);
   const housesVisitedByRoboSanta = recordHousesVisited(roboSantaDirections);
+
   const uniqueHousesVisited = new Set([
     ...housesVisitedBySanta,
     ...housesVisitedByRoboSanta,

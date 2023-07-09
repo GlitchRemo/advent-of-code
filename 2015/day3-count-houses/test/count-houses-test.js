@@ -8,48 +8,32 @@ const {
 } = require("../src/count-houses");
 
 describe("findNextCoordinate", () => {
-  it("should give the immediate next coordinate in specified direction", () => {
-    const currentCoordinate = { x: 0, y: 0 };
-    const eastNotation = ">";
-    const nextCoordinate = { x: 1, y: 0 };
-
-    assert.deepStrictEqual(
-      findNextCoordinate(currentCoordinate, eastNotation),
-      nextCoordinate
-    );
+  it("should give the adjacent coordinate to the given coordinate towards East, if > is provided", () => {
+    assert.deepStrictEqual(findNextCoordinate({ x: 0, y: 0 }, ">"), {
+      x: 1,
+      y: 0,
+    });
   });
 
-  it("should give the immediate next coordinate in West", () => {
-    const currentCoordinate = { x: 0, y: 0 };
-    const westNotation = "<";
-    const nextCoordinate = { x: -1, y: 0 };
-
-    assert.deepStrictEqual(
-      findNextCoordinate(currentCoordinate, westNotation),
-      nextCoordinate
-    );
+  it("should give the adjacent coordinate to the given coordinate towards West, if < is provided", () => {
+    assert.deepStrictEqual(findNextCoordinate({ x: 0, y: 0 }, "<"), {
+      x: -1,
+      y: 0,
+    });
   });
 
-  it("should give the immediate next coordinate in North", () => {
-    const currentCoordinate = { x: 0, y: 0 };
-    const northNotation = "^";
-    const nextCoordinate = { x: 0, y: 1 };
-
-    assert.deepStrictEqual(
-      findNextCoordinate(currentCoordinate, northNotation),
-      nextCoordinate
-    );
+  it("should give the adjacent coordinate to the given coordinate towards North, if ^ is provided", () => {
+    assert.deepStrictEqual(findNextCoordinate({ x: 0, y: 0 }, "^"), {
+      x: 0,
+      y: 1,
+    });
   });
 
-  it("should give the immediate next coordinate in South", () => {
-    const currentCoordinate = { x: 0, y: 0 };
-    const northNotation = "v";
-    const nextCoordinate = { x: 0, y: -1 };
-
-    assert.deepStrictEqual(
-      findNextCoordinate(currentCoordinate, northNotation),
-      nextCoordinate
-    );
+  it("should give the adjacent coordinate to the given coordinate towards South, if v is provided", () => {
+    assert.deepStrictEqual(findNextCoordinate({ x: 0, y: 0 }, "v"), {
+      x: 0,
+      y: -1,
+    });
   });
 });
 
@@ -69,7 +53,7 @@ describe("countHouses", () => {
 });
 
 describe("recordVisitedHouses", () => {
-  it("should give initial house coordinate for no direction", () => {
+  it("should give initial house coordinate if no direction is provided", () => {
     const housesVisited = new Set([JSON.stringify({ x: 0, y: 0 })]);
 
     assert.deepStrictEqual(recordHousesVisited(""), housesVisited);
@@ -92,11 +76,11 @@ describe("recordVisitedHouses", () => {
 });
 
 describe("countHousesVisitedByTwoSantas", () => {
-  it("should be 2 if both the Santas doesn't move", () => {
-    assert.strictEqual(countHousesVisitedByTwoSantas(""), 2);
+  it("should be 1 if both the Santas doesn't move", () => {
+    assert.strictEqual(countHousesVisitedByTwoSantas(""), 1);
   });
 
-  it.skip("should be 3 if only one Santa moves", () => {
-    assert.strictEqual(countHousesVisitedByTwoSantas(">"), 3);
+  it("should be 2 if only one Santa makes a move", () => {
+    assert.strictEqual(countHousesVisitedByTwoSantas(">"), 2);
   });
 });
