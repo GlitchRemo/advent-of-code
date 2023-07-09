@@ -1,4 +1,5 @@
 # Perfectly Spherical Houses in a Vacuum
+
 Santa is delivering presents to an infinite two-dimensional grid of houses.
 
 He begins by delivering a present to the house at his starting coordinate, and then an elf at the North Pole calls him via radio and tells him where to move next. Moves are always exactly one house to the north (^), south (v), east (>), or west (<). After each move, he delivers another present to the house at his new coordinate.
@@ -7,6 +8,8 @@ However, the elf back at the north pole has had a little too much eggnog, and so
 
 For example:
 
+```
 > delivers presents to 2 houses: one at the starting coordinate, and one to the east.
 ^>v< delivers presents to 4 houses in a square, including twice to the house at his starting/ending coordinate.
 ^v^v^v^v^v delivers a bunch of presents to some very lucky children at only 2 houses.
+```
