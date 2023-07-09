@@ -18,12 +18,12 @@ class MaterialCalculator {
     return giftBox.smallestSidePerimeter() + giftBox.volume();
   }
 
-  calculateTotalWrapperArea() {
+  calculateWrapperArea() {
     const wrapperAreas = this.#giftBoxes.map(this.#calculateWrapperArea);
     return total(wrapperAreas);
   }
 
-  calculateTotalRibbonLength() {
+  calculateRibbonLength() {
     const ribbonsLength = this.#giftBoxes.map(this.#calculateRibbonLength);
     return total(ribbonsLength);
   }

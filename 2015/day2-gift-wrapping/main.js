@@ -1,5 +1,4 @@
 const fs = require("fs");
-const { GiftBox } = require("./src/giftbox");
 const { parseDimensions } = require("./src/dimensions-parser");
 const { MaterialCalculator } = require("./src/material-calculator");
 
@@ -12,11 +11,11 @@ const main = () => {
   const materialCalculator = new MaterialCalculator();
 
   materialCalculator.createGiftBoxes(giftBoxesDimensions);
-  const giftBoxesWrapperArea = materialCalculator.calculateTotalWrapperArea();
-  const giftBoxesRibbonLength = materialCalculator.calculateTotalRibbonLength();
+  const wrapperArea = materialCalculator.calculateWrapperArea();
+  const ribbonLength = materialCalculator.calculateRibbonLength();
 
-  console.log(`Wrapping Material Area is ${giftBoxesWrapperArea} sq. feet`);
-  console.log(`Ribbon Material Length is ${giftBoxesRibbonLength} feet`);
+  console.log(`Wrapping Material Area is ${wrapperArea} sq. feet`);
+  console.log(`Ribbon Material Length is ${ribbonLength} feet`);
 };
 
 main();

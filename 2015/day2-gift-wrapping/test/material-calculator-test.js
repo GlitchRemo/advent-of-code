@@ -3,14 +3,14 @@ const { MaterialCalculator } = require("../src/material-calculator");
 const assert = require("assert");
 
 describe("MaterialCalculator", () => {
-  describe("calculateTotalWrapperArea", () => {
+  describe("calculateWrapperArea", () => {
     it("should give 0 if no giftBox is created", () => {
       const giftBoxDimensions = [];
       const materialCalculator = new MaterialCalculator();
 
       materialCalculator.createGiftBoxes(giftBoxDimensions);
 
-      const actual = materialCalculator.calculateTotalWrapperArea();
+      const actual = materialCalculator.calculateWrapperArea();
       const expected = 0;
       assert.strictEqual(actual, expected);
     });
@@ -21,7 +21,7 @@ describe("MaterialCalculator", () => {
 
       materialCalculator.createGiftBoxes(giftBoxDimensions);
 
-      const actual = materialCalculator.calculateTotalWrapperArea();
+      const actual = materialCalculator.calculateWrapperArea();
       const expected = 24;
       assert.strictEqual(actual, expected);
     });
@@ -35,20 +35,20 @@ describe("MaterialCalculator", () => {
 
       materialCalculator.createGiftBoxes(giftBoxDimensions);
 
-      const actual = materialCalculator.calculateTotalWrapperArea();
+      const actual = materialCalculator.calculateWrapperArea();
       const expected = 82;
       assert.strictEqual(actual, expected);
     });
   });
 
-  describe("calculateTotalRibbonLength", () => {
+  describe("calculateRibbonLength", () => {
     it("should give 0 if no giftBox is created", () => {
       const giftBoxDimensions = [];
       const materialCalculator = new MaterialCalculator();
 
       materialCalculator.createGiftBoxes(giftBoxDimensions);
 
-      const actual = materialCalculator.calculateTotalRibbonLength();
+      const actual = materialCalculator.calculateRibbonLength();
       const expected = 0;
       assert.strictEqual(actual, expected);
     });
@@ -59,7 +59,7 @@ describe("MaterialCalculator", () => {
 
       materialCalculator.createGiftBoxes(giftBoxDimensions);
 
-      const actual = materialCalculator.calculateTotalRibbonLength();
+      const actual = materialCalculator.calculateRibbonLength();
       const expected = 34;
       assert.strictEqual(actual, expected);
     });
