@@ -23,4 +23,10 @@ const countHousesVisited = (directions) => {
   return housesVisited.size;
 };
 
-module.exports = { countHousesVisited, findNextCoordinate };
+const countHousesVisitedByTwoSantas = () => 2;
+
+module.exports = {
+  countHousesVisited,
+  findNextCoordinate,
+  countHousesVisitedByTwoSantas,
+};

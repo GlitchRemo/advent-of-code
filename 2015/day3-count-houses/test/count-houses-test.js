@@ -3,6 +3,7 @@ const { describe, it } = require("node:test");
 const {
   findNextCoordinate,
   countHousesVisited,
+  countHousesVisitedByTwoSantas,
 } = require("../src/count-houses");
 
 describe("countHouses", () => {
@@ -22,30 +23,52 @@ describe("countHouses", () => {
 
 describe("findNextCoordinate", () => {
   it("should give the immediate next coordinate in East", () => {
-    assert.deepStrictEqual(findNextCoordinate({ x: 0, y: 0 }, ">"), {
-      x: 1,
-      y: 0,
-    });
+    const currentCoordinate = { x: 0, y: 0 };
+    const eastNotation = ">";
+    const nextCoordinate = { x: 1, y: 0 };
+
+    assert.deepStrictEqual(
+      findNextCoordinate(currentCoordinate, eastNotation),
+      nextCoordinate
+    );
   });
 
   it("should give the immediate next coordinate in West", () => {
-    assert.deepStrictEqual(findNextCoordinate({ x: 0, y: 0 }, "<"), {
-      x: -1,
-      y: 0,
-    });
+    const currentCoordinate = { x: 0, y: 0 };
+    const westNotation = "<";
+    const nextCoordinate = { x: -1, y: 0 };
+
+    assert.deepStrictEqual(
+      findNextCoordinate(currentCoordinate, westNotation),
+      nextCoordinate
+    );
   });
 
   it("should give the immediate next coordinate in North", () => {
-    assert.deepStrictEqual(findNextCoordinate({ x: 0, y: 0 }, "^"), {
-      x: 0,
-      y: 1,
-    });
+    const currentCoordinate = { x: 0, y: 0 };
+    const northNotation = "^";
+    const nextCoordinate = { x: 0, y: 1 };
+
+    assert.deepStrictEqual(
+      findNextCoordinate(currentCoordinate, northNotation),
+      nextCoordinate
+    );
   });
 
   it("should give the immediate next coordinate in South", () => {
-    assert.deepStrictEqual(findNextCoordinate({ x: 0, y: 0 }, "v"), {
-      x: 0,
-      y: -1,
-    });
+    const currentCoordinate = { x: 0, y: 0 };
+    const northNotation = "v";
+    const nextCoordinate = { x: 0, y: -1 };
+
+    assert.deepStrictEqual(
+      findNextCoordinate(currentCoordinate, northNotation),
+      nextCoordinate
+    );
+  });
+});
+
+describe("countHousesVisitedByTwoSantas", () => {
+  it("should be 2 if both the Santas doesn't move", () => {
+    assert.strictEqual(countHousesVisitedByTwoSantas(""), 2);
   });
 });
