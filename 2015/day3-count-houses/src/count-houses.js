@@ -1,2 +1,2 @@
-const countHouses = () => 1;
+const countHouses = (directions) => directions.length + 1;
 exports.countHouses = countHouses;
