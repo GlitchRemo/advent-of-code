@@ -11,27 +11,21 @@ class MaterialCalculator {
   }
 
   #calculateWrapperArea(giftBox) {
-    return giftBox.calculateSurfaceArea() + giftBox.calculateSmallestSideArea();
+    return giftBox.surfaceArea() + giftBox.smallestSideArea();
   }
 
   #calculateRibbonLength(giftBox) {
-    return giftBox.calculateSmallestSidePerimeter() + giftBox.calculateVolume();
+    return giftBox.smallestSidePerimeter() + giftBox.volume();
   }
 
   calculateTotalWrapperArea() {
-    return this.#giftBoxes.reduce(
-      (totalWrapperArea, giftBox) =>
-        totalWrapperArea + this.#calculateWrapperArea(giftBox),
-      0
-    );
+    const wrapperAreas = this.#giftBoxes.map(this.#calculateWrapperArea);
+    return total(wrapperAreas);
   }
 
   calculateTotalRibbonLength() {
-    return this.#giftBoxes.reduce(
-      (totalRibbonLength, giftBox) =>
-        totalRibbonLength + this.#calculateRibbonLength(giftBox),
-      0
-    );
+    const ribbonsLength = this.#giftBoxes.map(this.#calculateRibbonLength);
+    return total(ribbonsLength);
   }
 }
 
