@@ -1,6 +1,6 @@
 const assert = require("assert");
 const { describe, it } = require("node:test");
-const { countHouses, nextCoordinateInEast } = require("../src/count-houses");
+const { nextCoordinate, countHouses } = require("../src/count-houses");
 
 describe("countHouses", () => {
   it("should be 1 if Santa doesn't move from starting location", () => {
@@ -12,14 +12,29 @@ describe("countHouses", () => {
   });
 });
 
-describe("nextCoordinateInEast", () => {
-  it("should shift the coodinate in east", () => {
-    const coordinate = { x: 0, y: 0 };
-    const nextCoordinate = { x: 1, y: 0 };
+describe("nextCoordinate", () => {
+  it("should give the immediate next coordinate in East", () => {
+    assert.deepStrictEqual(nextCoordinate({ x: 0, y: 0 }, ">"), { x: 1, y: 0 });
+  });
 
-    assert.deepStrictEqual(
-      nextCoordinateInEast(coordinate, ">"),
-      nextCoordinate
-    );
+  it("should give the immediate next coordinate in West", () => {
+    assert.deepStrictEqual(nextCoordinate({ x: 0, y: 0 }, "<"), {
+      x: -1,
+      y: 0,
+    });
+  });
+
+  it("should give the immediate next coordinate in North", () => {
+    assert.deepStrictEqual(nextCoordinate({ x: 0, y: 0 }, "^"), {
+      x: 0,
+      y: 1,
+    });
+  });
+
+  it("should give the immediate next coordinate in South", () => {
+    assert.deepStrictEqual(nextCoordinate({ x: 0, y: 0 }, "v"), {
+      x: 0,
+      y: -1,
+    });
   });
 });
