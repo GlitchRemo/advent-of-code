@@ -5,6 +5,7 @@ const {
   countHousesVisited,
   countHousesVisitedByTwoSantas,
   recordHousesVisited,
+  partition: segregateDirections,
 } = require("../src/count-houses");
 
 describe("findNextCoordinate", () => {
@@ -82,5 +83,28 @@ describe("countHousesVisitedByTwoSantas", () => {
 
   it("should be 2 if only one Santa makes a move", () => {
     assert.strictEqual(countHousesVisitedByTwoSantas(">"), 2);
+  });
+});
+
+describe("segregateDirections", () => {
+  it("should assign no direction to both Santa if no direction is provided", () => {
+    assert.deepStrictEqual(segregateDirections(""), {
+      santaDirections: "",
+      roboSantaDirections: "",
+    });
+  });
+
+  it("should assign one direction to Santa and no direction to Robo Santa if only one direction is provided", () => {
+    assert.deepStrictEqual(segregateDirections(">"), {
+      santaDirections: ">",
+      roboSantaDirections: "",
+    });
+  });
+
+  it("should assign directions to Santa and Robo Santa alternatively if multiple directions are provided", () => {
+    assert.deepStrictEqual(segregateDirections(">^<"), {
+      santaDirections: "><",
+      roboSantaDirections: "^",
+    });
   });
 });

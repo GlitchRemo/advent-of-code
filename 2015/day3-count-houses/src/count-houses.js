@@ -27,22 +27,22 @@ const countHousesVisited = (directions) => {
   return recordHousesVisited(directions).size;
 };
 
-const partition = (directions) => {
-  if (directions.length === 0) return { even: "", odd: "" };
-  return { even: "", odd: directions };
+const isEven = (a) => a % 2 === 0;
+const isOdd = (a) => a % 2 === 1;
+
+const segregateDirections = ([...directions]) => {
+  const santaDirections = directions.filter((_, i) => isEven(i)).join("");
+  const roboSantaDirections = directions.filter((_, i) => isOdd(i)).join("");
+  return { santaDirections, roboSantaDirections };
 };
 
 const countHousesVisitedByTwoSantas = (directions) => {
-  const { even: santaDirections, odd: roboSantaDirections } =
-    partition(directions);
+  const { santaDirections, roboSantaDirections } =
+    segregateDirections(directions);
 
-  const housesVisitedBySanta = recordHousesVisited(santaDirections);
-  const housesVisitedByRoboSanta = recordHousesVisited(roboSantaDirections);
-
-  const uniqueHousesVisited = new Set([
-    ...housesVisitedBySanta,
-    ...housesVisitedByRoboSanta,
-  ]);
+  const santaRecords = recordHousesVisited(santaDirections);
+  const roboSantaRecords = recordHousesVisited(roboSantaDirections);
+  const uniqueHousesVisited = new Set([...santaRecords, ...roboSantaRecords]);
 
   return uniqueHousesVisited.size;
 };
@@ -52,4 +52,5 @@ module.exports = {
   findNextCoordinate,
   countHousesVisitedByTwoSantas,
   recordHousesVisited,
+  partition: segregateDirections,
 };
