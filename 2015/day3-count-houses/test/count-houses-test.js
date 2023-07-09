@@ -38,21 +38,6 @@ describe("findNextCoordinate", () => {
   });
 });
 
-describe("countHouses", () => {
-  it("should be 1 if Santa doesn't move from starting location", () => {
-    assert.strictEqual(countHousesVisited(""), 1);
-  });
-
-  it("should be 2 if Santa moves only once", () => {
-    assert.strictEqual(countHousesVisited(">"), 2);
-  });
-
-  it("should be the count of unique houses visited by Santa if Santa moves in multiple directions", () => {
-    assert.strictEqual(countHousesVisited("^>v<"), 4);
-    assert.strictEqual(countHousesVisited("^v^v^v^v^v"), 2);
-  });
-});
-
 describe("recordVisitedHouses", () => {
   it("should give initial house coordinate if no direction is provided", () => {
     const housesVisited = new Set([JSON.stringify({ x: 0, y: 0 })]);
@@ -76,6 +61,21 @@ describe("recordVisitedHouses", () => {
   });
 });
 
+describe("countHouses", () => {
+  it("should be 1 if Santa doesn't move from starting location", () => {
+    assert.strictEqual(countHousesVisited(""), 1);
+  });
+
+  it("should be 2 if Santa moves only once", () => {
+    assert.strictEqual(countHousesVisited(">"), 2);
+  });
+
+  it("should be the count of unique houses visited by Santa if Santa moves in multiple directions", () => {
+    assert.strictEqual(countHousesVisited("^>v<"), 4);
+    assert.strictEqual(countHousesVisited("^v^v^v^v^v"), 2);
+  });
+});
+
 describe("countHousesVisitedByTwoSantas", () => {
   it("should be 1 if both the Santas doesn't move", () => {
     assert.strictEqual(countHousesVisitedByTwoSantas(""), 1);
@@ -83,6 +83,12 @@ describe("countHousesVisitedByTwoSantas", () => {
 
   it("should be 2 if only one Santa makes a move", () => {
     assert.strictEqual(countHousesVisitedByTwoSantas(">"), 2);
+  });
+
+  it("should be the count of unique houses visited by both Santas if both Santas move in multiple directions", () => {
+    assert.strictEqual(countHousesVisitedByTwoSantas("^v"), 3);
+    assert.strictEqual(countHousesVisitedByTwoSantas("^>v<"), 3);
+    assert.strictEqual(countHousesVisitedByTwoSantas("^v^v^v^v^v"), 11);
   });
 });
 
