@@ -11,7 +11,7 @@ const findNextCoordinate = ({ x, y }, direction) => {
   }
 };
 
-const countHousesVisited = (directions) => {
+const recordHousesVisited = (directions) => {
   let currentCoordinate = { x: 0, y: 0 };
   const housesVisited = new Set([JSON.stringify(currentCoordinate)]);
 
@@ -20,13 +20,29 @@ const countHousesVisited = (directions) => {
     housesVisited.add(JSON.stringify(currentCoordinate));
   });
 
-  return housesVisited.size;
+  return housesVisited;
 };
 
-const countHousesVisitedByTwoSantas = () => 2;
+const countHousesVisited = (directions) => {
+  return recordHousesVisited(directions).size;
+};
+
+const countHousesVisitedByTwoSantas = (directions) => {
+  const santaDirections = ">";
+  const roboSantaDirections = "";
+  const housesVisitedBySanta = recordHousesVisited(santaDirections);
+  const housesVisitedByRoboSanta = recordHousesVisited(roboSantaDirections);
+  const uniqueHousesVisited = new Set([
+    ...housesVisitedBySanta,
+    ...housesVisitedByRoboSanta,
+  ]);
+
+  return uniqueHousesVisited.size;
+};
 
 module.exports = {
   countHousesVisited,
   findNextCoordinate,
   countHousesVisitedByTwoSantas,
+  recordHousesVisited,
 };
