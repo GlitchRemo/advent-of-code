@@ -52,7 +52,15 @@ describe("recordVisitedHouses", () => {
     assert.deepStrictEqual(recordHousesVisited(">"), housesVisited);
   });
 
-  it("should give multiple unique house coordinates for multiple directions", () => {
+  it("should give multiple house coordinates for multiple directions when all houses are visited once", () => {
+    const housesVisited = new Set([JSON.stringify({ x: 0, y: 0 })]);
+    housesVisited.add(JSON.stringify({ x: 1, y: 0 }));
+    housesVisited.add(JSON.stringify({ x: 1, y: 1 }));
+
+    assert.deepStrictEqual(recordHousesVisited(">^"), housesVisited);
+  });
+
+  it("should give multiple unique house coordinates for multiple directions when houses are visited more than once", () => {
     const housesVisited = new Set([JSON.stringify({ x: 0, y: 0 })]);
     housesVisited.add(JSON.stringify({ x: 1, y: 0 }));
     housesVisited.add(JSON.stringify({ x: 1, y: 1 }));
