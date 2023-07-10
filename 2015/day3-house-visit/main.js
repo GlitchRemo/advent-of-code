@@ -13,6 +13,7 @@ const part2 = (directions) => {
 
 const main = () => {
   const directions = fs.readFileSync("./resources/directions.txt", "utf-8");
+
   part1(directions);
   part2(directions);
 };
