@@ -1,7 +1,7 @@
 const isEven = (a) => a % 2 === 0;
 const isOdd = (a) => a % 2 === 1;
 
-const segregateDirections = ([...directions]) => {
+const divideDirections = ([...directions]) => {
   const santaDirections = directions.filter((_, i) => isEven(i)).join("");
   const roboSantaDirections = directions.filter((_, i) => isOdd(i)).join("");
   return { santaDirections, roboSantaDirections };
@@ -37,7 +37,7 @@ const countHousesVisited = (directions) => {
 };
 
 const countHousesVisitedByTwoSantas = (directions) => {
-  const { santaDirections, roboSantaDirections } = segregateDirections(directions);
+  const { santaDirections, roboSantaDirections } = divideDirections(directions);
 
   const santaRecords = recordHousesVisited(santaDirections);
   const roboSantaRecords = recordHousesVisited(roboSantaDirections);
@@ -51,5 +51,5 @@ module.exports = {
   findNextCoordinate,
   countHousesVisitedByTwoSantas,
   recordHousesVisited,
-  segregateDirections,
+  divideDirections,
 };
