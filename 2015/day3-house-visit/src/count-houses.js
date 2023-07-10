@@ -39,9 +39,9 @@ const countHousesVisited = (directions) => {
 const countHousesVisitedByTwoSantas = (directions) => {
   const { santaDirections, roboSantaDirections } = divideDirections(directions);
 
-  const santaRecords = recordHousesVisited(santaDirections);
-  const roboSantaRecords = recordHousesVisited(roboSantaDirections);
-  const uniqueHousesVisited = new Set([...santaRecords, ...roboSantaRecords]);
+  const housesVisitedBySanta = recordHousesVisited(santaDirections);
+  const housesVisitedByTwoSantas = recordHousesVisited(roboSantaDirections);
+  const uniqueHousesVisited = new Set([...housesVisitedBySanta, ...housesVisitedByTwoSantas]);
 
   return uniqueHousesVisited.size;
 };
