@@ -47,25 +47,19 @@ describe("recordVisitedHouses", () => {
   });
 
   it("should give one house coordinate for only one direction", () => {
-    const housesVisited = new Set(["0_0"]);
-    housesVisited.add("1_0");
+    const housesVisited = new Set(["0_0", "1_0"]);
 
     assert.deepStrictEqual(recordHousesVisited(">"), housesVisited);
   });
 
   it("should give multiple house coordinates for multiple directions when all houses are visited once", () => {
-    const housesVisited = new Set(["0_0"]);
-    housesVisited.add("1_0");
-    housesVisited.add("1_1");
+    const housesVisited = new Set(["0_0", "1_0", "1_1"]);
 
     assert.deepStrictEqual(recordHousesVisited(">^"), housesVisited);
   });
 
   it("should give multiple unique house coordinates for multiple directions when houses are visited more than once", () => {
-    const housesVisited = new Set(["0_0"]);
-    housesVisited.add("1_0");
-    housesVisited.add("1_1");
-    housesVisited.add("1_0");
+    const housesVisited = new Set(["0_0", "1_0", "1_1", "1_0"]);
 
     assert.deepStrictEqual(recordHousesVisited(">^v"), housesVisited);
   });
