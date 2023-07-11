@@ -43,25 +43,25 @@ describe("recordVisitedHouses", () => {
   it("should give initial house coordinate if no direction is provided", () => {
     const housesVisited = new Set(["0_0"]);
 
-    assert.deepStrictEqual(recordHousesVisited(""), housesVisited);
+    assert.deepStrictEqual(recordHousesVisited([]), housesVisited);
   });
 
   it("should give one house coordinate for only one direction", () => {
     const housesVisited = new Set(["0_0", "1_0"]);
 
-    assert.deepStrictEqual(recordHousesVisited(">"), housesVisited);
+    assert.deepStrictEqual(recordHousesVisited([">"]), housesVisited);
   });
 
   it("should give multiple house coordinates for multiple directions when all houses are visited once", () => {
     const housesVisited = new Set(["0_0", "1_0", "1_1"]);
 
-    assert.deepStrictEqual(recordHousesVisited(">^"), housesVisited);
+    assert.deepStrictEqual(recordHousesVisited([">", "^"]), housesVisited);
   });
 
   it("should give multiple unique house coordinates for multiple directions when houses are visited more than once", () => {
     const housesVisited = new Set(["0_0", "1_0", "1_1", "1_0"]);
 
-    assert.deepStrictEqual(recordHousesVisited(">^v"), housesVisited);
+    assert.deepStrictEqual(recordHousesVisited([">", "^", "v"]), housesVisited);
   });
 });
 

@@ -20,11 +20,11 @@ const findNextCoordinate = ({ x, y }, direction) => {
     case ">":
       return { x: x + 1, y: y + 0 };
     case "<":
-      return { y: y + 0, x: x - 1 };
+      return { x: x - 1, y: y + 0 };
     case "^":
       return { x: x + 0, y: y + 1 };
     case "v":
-      return { y: y - 1, x: x + 0 };
+      return { x: x + 0, y: y - 1 };
   }
 };
 
@@ -34,7 +34,7 @@ const recordHousesVisited = (directions) => {
   let currentCoordinate = { x: 0, y: 0 };
   const housesVisited = new Set([convertToString(currentCoordinate)]);
 
-  [...directions].forEach((direction) => {
+  directions.forEach((direction) => {
     currentCoordinate = findNextCoordinate(currentCoordinate, direction);
     housesVisited.add(convertToString(currentCoordinate));
   });
@@ -43,14 +43,14 @@ const recordHousesVisited = (directions) => {
 };
 
 const countHousesVisited = (directions) => {
-  return recordHousesVisited(directions).size;
+  return recordHousesVisited([...directions]).size;
 };
 
 const countHousesVisitedByTwoSantas = (directions) => {
-  const { evens, odds } = partitionBy([...directions], isEvenIndex);
-
-  const santaDirections = evens.join("");
-  const roboSantaDirections = odds.join("");
+  const { evens: santaDirections, odds: roboSantaDirections } = partitionBy(
+    [...directions],
+    isEvenIndex
+  );
 
   const housesVisitedBySanta = recordHousesVisited(santaDirections);
   const housesVisitedByTwoSantas = recordHousesVisited(roboSantaDirections);
