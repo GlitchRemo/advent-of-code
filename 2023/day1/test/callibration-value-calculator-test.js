@@ -2,10 +2,9 @@ const { describe, it } = require("node:test");
 const assert = require("assert");
 const {
 	calculateCallibrationsValue,
-	calculateCallibrationsValuePart2,
 } = require("../src/callibration-value-calculator");
 
-describe("callibration value calculator part 1", () => {
+describe("callibration value calculator", () => {
 	it("should give the callibration value for one callibration with first and last digit present in extremes", () => {
 		assert.strictEqual(calculateCallibrationsValue(["1abc2"]), 12);
 	});
@@ -25,6 +24,25 @@ describe("callibration value calculator part 1", () => {
 				"treb7uchet",
 			]),
 			142
+		);
+	});
+
+	it("should give the callibration value for single callibrations when callibration contains numbers in word", () => {
+		assert.strictEqual(calculateCallibrationsValue(["two1nine"]), 29);
+	});
+
+	it("should give the callibration value for multiple callibrations when callibration contains numbers in word", () => {
+		assert.strictEqual(
+			calculateCallibrationsValue([
+				"two1nine",
+				"eightwothree",
+				"abcone2threexyz",
+				"xtwone3four",
+				"4nineeightseven2",
+				"zoneight234",
+				"7pqrstsixteen",
+			]),
+			281
 		);
 	});
 });

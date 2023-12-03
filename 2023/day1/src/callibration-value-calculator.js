@@ -1,9 +1,28 @@
-const { numbers, sumOf, isNumber } = require("../resources/utils");
+const { numbers, sumOf, identity, reverse } = require("../resources/utils");
 
-const getFirstDigit = (callibration) => [...callibration].find(isNumber);
+const getHiddenDigit = (text, transform) => {
+	const actualText = transform(text);
 
-const getLastDigit = (callibration) =>
-	[...callibration].reverse().find(isNumber);
+	const hiddenDigitInWords = Object.keys(numbers).find((numberInWord) =>
+		actualText.includes(numberInWord)
+	);
+
+	return numbers[hiddenDigitInWords];
+};
+
+const getDigit = (callibration, transform) => {
+	let substr = "";
+
+	for (const char of callibration) {
+		substr += char;
+		const number = getHiddenDigit(substr, transform);
+		if (number) return number;
+	}
+};
+
+const getFirstDigit = (callibration) => getDigit(callibration, identity);
+
+const getLastDigit = (callibration) => getDigit(reverse(callibration), reverse);
 
 const calculateCallibrationValue = (callibration) => {
 	const firstDigit = getFirstDigit(callibration);

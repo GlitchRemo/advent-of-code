@@ -1,4 +1,5 @@
-const isNumber = (value) => !isNaN(Number(value));
+const identity = (text) => text;
+const reverse = (text) => text.split("").reverse().join("");
 
 const sumOf = (values) => values.reduce((a, b) => a + b);
 
@@ -12,6 +13,15 @@ const numbers = {
 	seven: 7,
 	eight: 8,
 	nine: 9,
+	1: 1,
+	2: 2,
+	3: 3,
+	4: 4,
+	5: 5,
+	6: 6,
+	7: 7,
+	8: 8,
+	9: 9,
 };
 
-module.exports = { isNumber, sumOf, numbers };
+module.exports = { identity, reverse, numbers, sumOf };

@@ -1,6 +1,5 @@
 const fs = require("fs");
 const {
-	findCallibrationValue,
 	calculateCallibrationsValue,
 } = require("./src/callibration-value-calculator");
 
